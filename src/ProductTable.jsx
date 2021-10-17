@@ -7,6 +7,12 @@ class ProductTable extends React.Component {
         const rows = [];
         let lastCategory = null;
         this.props.products.forEach(product => {
+            if (product.name.indexOf(this.props.filterText) === -1) {
+                return;
+            }
+            if (this.props.inStockOnly && !product.stocked) {
+                return;
+            }
             if (product.category !== lastCategory) {
                 rows.push(
                     <ProductCategoryRow
