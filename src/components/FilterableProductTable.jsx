@@ -1,7 +1,7 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 import ProductTable from "./ProductTable";
-import PRODUCTS from "./data";
+import PRODUCTS from "../data";
 
 class FilterableProductTable extends React.Component {
     constructor(props) {
