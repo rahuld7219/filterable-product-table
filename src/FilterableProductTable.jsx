@@ -8,8 +8,8 @@ class FilterableProductTable extends React.Component {
         super(props);
 
         // This binding is necessary to make `this` work in the callback    
-        this.setFilterText = this.setFilterText.bind(this);
-        this.setInStockOnly = this.setInStockOnly.bind(this);
+        this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+        this.handleInStockChange = this.handleInStockChange.bind(this);
 
         this.state = {
             filterText: "",
@@ -17,18 +17,20 @@ class FilterableProductTable extends React.Component {
         };
     }
 
-    setFilterText(e) {
+    handleFilterTextChange(filterText) {
         this.setState(
             {
-                filterText: e.target.value
+                filterText
             }
         )
     }
 
-    setInStockOnly() {
-        this.setState(state => {
-            return { inStockOnly: !state.inStockOnly };
-        })
+    handleInStockChange(inStockOnly) {
+        this.setState(
+            {
+                inStockOnly
+            }
+        );
     }
 
     render() {
@@ -37,8 +39,8 @@ class FilterableProductTable extends React.Component {
                 <SearchBar
                     filterText={this.state.filterText}
                     inStockOnly={this.state.inStockOnly}
-                    setFilterText={this.setFilterText}
-                    setInStockOnly={this.setInStockOnly}
+                    onFilterTextChange={this.handleFilterTextChange}
+                    onInStockChange={this.handleInStockChange}
                 />
                 <ProductTable
                     products={PRODUCTS}
